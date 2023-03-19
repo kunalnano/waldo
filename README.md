@@ -6,11 +6,8 @@ This repository contains scripts for detecting Waldo (from the "Where's Waldo?" 
 
 Template Matching performs template matching using the normalized cross-correlation method (cv2.TM_CCOEFF_NORMED). It then finds the best match's location and draws a rectangle around it in the scene image.
 
-
-
 1. It works best when the template and the target in the scene are of the same size, orientation, and lighting conditions.
 2. It can be sensitive to occlusions, rotations, and scale changes.
-
 
 `template_matching.py` is a simple script that uses OpenCV's template matching technique to find Waldo in an image. This method works best when the template and the target in the scene have the same size, orientation, and lighting conditions.
 
@@ -28,18 +25,18 @@ The ORB feature detector and descriptor extractor to find keypoints and descript
 
 This approach is more robust than template matching, but it might still have some limitations, especially in cases of severe occlusions or extreme changes in scale or perspective. If you need even more robustness, consider using deep learning-based methods, such as convolutional neural networks (CNNs) trained for object detection or recognition tasks.
 
-orb_matching.py uses the ORB (Oriented FAST and Rotated BRIEF) feature detector and descriptor extractor to match keypoints between the template and scene images. This method is more robust than template matching but may still have limitations in cases of severe occlusions or extreme changes in scale or perspective.
+`orb_matching.py` uses the ORB (Oriented FAST and Rotated BRIEF) feature detector and descriptor extractor to match keypoints between the template and scene images. This method is more robust than template matching but may still have limitations in cases of severe occlusions or extreme changes in scale or perspective.
 
 ### Usage
 
 ```
 python orb_matching.py
 ```
-Make sure to update the template_path and scene_path variables in the script with the correct file paths for your template and scene images.
+Make sure to update the `template_path` and `scene_path` variables in the script with the correct file paths for your template and scene images.
 
 ## 3. Deep Learning-based Object Detection (YOLOv5)
 
-The deep learning-based approach requires several steps, including preparing a dataset, training a YOLOv5 model, and using the trained model to detect Waldo in images. Please refer to the instructions in the previous response for a detailed guide on how to use a YOLOv5 model for Waldo detection.
+The deep learning-based approach requires several steps, including preparing a dataset, training a `YOLOv5 model`, and using the trained model to detect Waldo in images. 
 
 Using a deep learning-based object detection model like YOLO (You Only Look Once) or Faster R-CNN might provide better results.
 
@@ -90,7 +87,7 @@ val: data/val
 nc: 1  # number of classes
 names: ['Waldo']
 ```
-Choose a pre-trained YOLOv5 model and create a YAML configuration file for it. You can use the existing configurations in the yolov5/models/ folder. For example, you can use the YOLOv5s model:
+Choose a pre-trained YOLOv5 model and create a YAML configuration file for it. You can use the existing configurations in the `yolov5/models/` folder. For example, you can use the YOLOv5s model:
 ```
 # yolov5s_waldo.yaml
 # parameters from yolov5s.yaml
@@ -112,7 +109,7 @@ After training, you can use the detect.py script in the YOLOv5 repository to fin
 ```
 python detect.py --weights runs/train/yolov5s_waldo/weights/best.pt --img 640 --conf 0.25 --source test_images/
 ```
-This process involves several steps and requires a dataset, but it is more likely to give you accurate and robust results compared to the ORB-based script. The deep learning model will learn to recognize Waldo's features and should be able to detect him even in challenging scenarios like the airport scene you mentioned.
+This process involves several steps and requires a dataset, but it is more likely to give you accurate and robust results compared to the ORB-based script. The deep learning model will learn to recognize Waldo's features and should be able to detect him even in challenging scenarios like the airport scene etc.
 
 ### Usage
 
